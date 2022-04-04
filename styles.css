@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
+    font-family: sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.location,
+.temperature {
+    height: 30vh;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.location {
+    padding-top: 1rem;
+    flex-direction: column;
+}
+
+.temperature {
+    flex-direction: column;
+}
+
+.degree-section {
+    display: flex;
+    align-items: center;
+}
+
+.degree-section span {
+    margin: 10px;
+    font-size: 1.75rem;
+}
+
+.degree-section h2 {
+    font-size: 3rem;
+}
+
+.daily-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    width: 80%;
+}
+
+.card {
+    background: linear-gradient(rgba(159, 158, 158,0.5), rgba(233, 232, 232,0.5));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 10px 0px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.card span {
+    font-size: 1.5rem;
+}
+
+@media screen  and (min-width: 480px) {
+    .daily-details {
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: 1fr;
+    }
+}
