@@ -9,6 +9,8 @@ window.addEventListener("load", () => {
   let temperatureHigh = document.querySelector(".high-degree");
   let temperatureLow = document.querySelector(".low-degree");
   let humidityPercentage = document.querySelector(".humidity-percentage");
+  let sunriseTime = document.querySelector(".sunrise-time");
+  let sunsetTime = document.querySelector(".sunset-time");
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -24,6 +26,7 @@ window.addEventListener("load", () => {
           console.log(data);
           const { temp, temp_min, temp_max, humidity } = data.main;
           const { main, icon } = data.weather[0];
+          const { country, sunrise, sunset } = data.sys;
 
           //   Set DOM elements from the API
           temperatureDegree.textContent = Math.round(temp);
@@ -31,7 +34,21 @@ window.addEventListener("load", () => {
           temperatureLow.textContent = Math.round(temp_min);
           humidityPercentage.textContent = humidity;
           temperatureDescription.textContent = main;
-          locationTimezone.textContent = data.name;
+          locationTimezone.textContent = data.name + ", " + country;
+          sunriseTime.textContent = new Date(sunrise * 1000).toLocaleTimeString(
+            navigator.language,
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+            }
+          );
+          sunsetTime.textContent = new Date(sunset * 1000).toLocaleTimeString(
+            navigator.language,
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+            }
+          );
           document.querySelector(
             ".weather-icon"
           ).src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
